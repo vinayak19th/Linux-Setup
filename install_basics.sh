@@ -3,7 +3,7 @@ export SCRIPT_HOME=$PWD
 
 cd ~
 sudo apt update && sudo apt upgrade -y
-sudo apt install zsh neovim git wget -y
+sudo apt install zsh neovim git wget curl -y
 
 echo $SCRIPT_HOME
 
@@ -32,3 +32,16 @@ else
     echo "Skipping Anaconda Install"
 fi
 
+# Docker INSTALL
+echo -n "Install Docker? (y/n)? "
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
+    echo "Installing Docker"
+    cd ~/Dev_Tools
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+else
+    echo "Skipping Docker Install"
+fi
