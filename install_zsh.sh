@@ -34,6 +34,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     sed -i '/# alias zshconfig=\"mate/ s/#//' ~/.zshrc 
     sed -i '/alias zshconfig=\"mate/ s/$/\nalias zshsource=\"source ~\/.zshrc\"/' ~/.zshrc
     sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo apt update\"\nalias aupg=\"sudo apt upgrade\"/' ~/.zshrc
+    sed -i 's/mate/nvim/' ~/.zshrc
 else
     echo "Skipping Sed commands"
 fi
