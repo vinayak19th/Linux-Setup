@@ -29,7 +29,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     echo "Running sed"
     sed -i '/ZSH_THEME=/ s/\".*\"/\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc 
     ## Plugins
-    sed -i '/plugins=(git/ s/)/\n\tdocker\n\tssh-agent\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)/' ~/.zshrc 
+    sed -i '/plugins=(git/ s/)/\n\tdocker\n\tdocker-compose\n\tssh-agent\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n)/' ~/.zshrc 
     ## aliases
     sed -i '/# alias zshconfig=\"mate/ s/#//' ~/.zshrc 
     sed -i '/alias zshconfig=\"mate/ s/$/\nalias zshsource=\"source ~\/.zshrc\"/' ~/.zshrc

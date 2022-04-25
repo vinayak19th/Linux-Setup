@@ -42,6 +42,7 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     sudo sh get-docker.sh
     sudo groupadd docker
     sudo usermod -aG docker $USER
+    sudo apt install docker-compose -y
 else
     echo "Skipping Docker Install"
 fi
