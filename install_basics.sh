@@ -12,7 +12,7 @@ echo -n "Configure OH-MY-ZSH? (y/n)? "
 read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
     cd $SCRIPT_HOME
-    ./install_zsh
+    ./install_zsh.sh
 else
     echo "Skipping OH-MY-ZSH Configuration"
 fi
