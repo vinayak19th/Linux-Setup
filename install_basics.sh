@@ -3,7 +3,7 @@ export SCRIPT_HOME=$PWD
 
 cd ~
 sudo apt update && sudo apt upgrade -y
-sudo apt install zsh neovim git wget curl -y
+sudo apt install zsh neovim git wget curl openssh-client openssh-server -y
 
 echo $SCRIPT_HOME
 
