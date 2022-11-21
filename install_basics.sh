@@ -3,7 +3,7 @@ export SCRIPT_HOME=$PWD
 
 cd ~
 sudo apt update && sudo apt upgrade -y
-sudo apt install zsh neovim git wget curl -y
+sudo apt install zsh neovim git wget curl openssh-client openssh-server -y
 
 echo $SCRIPT_HOME
 
@@ -12,7 +12,7 @@ echo -n "Configure OH-MY-ZSH? (y/n)? "
 read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
     cd $SCRIPT_HOME
-    ./install_zsh
+    ./install_zsh.sh
 else
     echo "Skipping OH-MY-ZSH Configuration"
 fi
