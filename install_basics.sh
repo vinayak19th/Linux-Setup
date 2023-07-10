@@ -25,8 +25,8 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     cd ~
     mkdir Dev_Tools && cd Dev_Tools
     wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
-    chmod +x Anaconda3-2021.11-Linux-x86_64.sh
-    ./Anaconda3-2021.11-Linux-x86_64.sh
+    chmod +x https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
+    ./Anaconda3-2023.03-1-Linux-x86_64.sh
     ~/anaconda3/bin/conda init zsh
 else
     echo "Skipping Anaconda Install"
