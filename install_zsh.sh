@@ -33,8 +33,13 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     ## aliases
     sed -i '/# alias zshconfig=\"mate/ s/#//' ~/.zshrc 
     sed -i '/alias zshconfig=\"mate/ s/$/\nalias zshsource=\"source ~\/.zshrc\"/' ~/.zshrc
-    sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo apt update\"\nalias aupg=\"sudo apt upgrade\"/' ~/.zshrc
+    # Apt aliases and tmux 
+    sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo apt update\"\nalias aupg=\"sudo apt upgrade\"\nalias aupi=\"sudo apt install\"\nalias tmux=\"tmux -u\"/' ~/.zshrc
+    # NumaFix
+    sed -i '/apt install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' test_rc ~/.zshrc
     sed -i 's/mate/nvim/' ~/.zshrc
+    # git_compush
+    sed -i '/tmux -u\"/a #Utility Functions \ngit_compush(){\n    git commit -m $1 && git push\n}' test_rc
 else
     echo "Skipping Sed commands"
 fi

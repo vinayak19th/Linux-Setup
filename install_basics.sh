@@ -17,6 +17,16 @@ else
     echo "Skipping OH-MY-ZSH Configuration"
 fi
 
+#Nvim Config
+echo -n "Config Nvim? (y/n)? "
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
+    cp ./nvim/init.vim ~/.config/nvim/init.vim
+    nvim +PlugInstall +qall
+else
+    echo "Skipping Nvim Configs"
+fi
+
 # ANACONDA INSTALL
 echo -n "Install Anaconda? (y/n)? "
 read answer
