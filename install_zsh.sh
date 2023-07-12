@@ -38,10 +38,11 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     # NumaFix
     sed -i '/apt install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' test_rc ~/.zshrc
     sed -i 's/mate/nvim/' ~/.zshrc
+    # Nvim Update
+    sed -i '/tmux -u\"/a alias nvupdate=\"nvim +PlugUpdate +qall\"' ~/.zshrc
     # git_compush
     sed -i '/tmux -u\"/a #Utility Functions \ngit_compush(){\n    git commit -m $1 && git push\n}' test_rc
 else
     echo "Skipping Sed commands"
 fi
 source ~/.zshrc
-
