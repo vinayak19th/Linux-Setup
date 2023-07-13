@@ -36,13 +36,12 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     # Apt aliases and tmux 
     sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo apt update\"\nalias aupg=\"sudo apt upgrade\"\nalias aupi=\"sudo apt install\"\nalias tmux=\"tmux -u\"/' ~/.zshrc
     # NumaFix
-    sed -i '/apt install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' test_rc ~/.zshrc
+    sed -i '/apt install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' ~/.zshrc
     sed -i 's/mate/nvim/' ~/.zshrc
     # Nvim Update
     sed -i '/tmux -u\"/a alias nvupdate=\"nvim +PlugUpdate +qall\"' ~/.zshrc
     # git_compush
-    sed -i '/tmux -u\"/a #Utility Functions \ngit_compush(){\n    git commit -m $1 && git push\n}' test_rc
-else
+    sed -i '/tmux -u\"/a #Utility Functions \ngcomp(){\n    git commit -m $1 && git push\n}'~/.zshrc
     echo "Skipping Sed commands"
 fi
 source ~/.zshrc
