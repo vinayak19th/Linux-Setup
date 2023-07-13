@@ -1,0 +1,6 @@
+# conda environments:
+#
+base                  *  /home/vinayak/anaconda3
+qiskit                   /home/vinayak/anaconda3/envs/qiskit
+tf_gpu                   /home/vinayak/anaconda3/envs/tf_gpu
+torch                    /home/vinayak/anaconda3/envs/torch

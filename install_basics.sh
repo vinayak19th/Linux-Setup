@@ -10,7 +10,7 @@ echo $SCRIPT_HOME
 # ANACONDA INSTALL
 echo -n "Configure OH-MY-ZSH? (y/n)? "
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
+if [ "$answer" != "${answer#[Yy]}" ] ;then
     cd $SCRIPT_HOME
     ./install_zsh.sh
 else
@@ -20,7 +20,7 @@ fi
 #Nvim Config
 echo -n "Config Nvim? (y/n)? "
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
     cp ./nvim/init.vim ~/.config/nvim/init.vim
     nvim +PlugInstall +qall
 else
@@ -30,7 +30,7 @@ fi
 # ANACONDA INSTALL
 echo -n "Install Anaconda? (y/n)? "
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
     echo "Installing Anaconda"
     cd ~
     mkdir Dev_Tools && cd Dev_Tools
@@ -45,7 +45,7 @@ fi
 # Docker INSTALL
 echo -n "Install Docker? (y/n)? "
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
     echo "Installing Docker"
     cd ~/Dev_Tools
     curl -fsSL https://get.docker.com -o get-docker.sh
@@ -55,4 +55,16 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     sudo apt install docker-compose -y
 else
     echo "Skipping Docker Install"
+fi
+
+
+# ANACONDA ENVS Set UP
+echo -n "Set Anaconda Envs from backup? (y/n)? "
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    echo "Setting Up Conda Envs from Backups"
+    cd $SCRIPT_HOME
+    ./conda_envs/import_envs.sh
+else
+    echo "Skipping Anaconda Envs Set Up"
 fi
