@@ -2,6 +2,7 @@
 #
 base                  *  /home/vinayak/anaconda3
 cirq                     /home/vinayak/anaconda3/envs/cirq
+pennylane                /home/vinayak/anaconda3/envs/pennylane
 qiskit                   /home/vinayak/anaconda3/envs/qiskit
 tf_gpu                   /home/vinayak/anaconda3/envs/tf_gpu
 tfqn                     /home/vinayak/anaconda3/envs/tfqn
