@@ -429,7 +429,7 @@ https://repo.anaconda.com/pkgs/main/linux-64/qtconsole-5.4.2-py311h06a4308_0.con
 https://repo.anaconda.com/pkgs/main/linux-64/requests-2.29.0-py311h06a4308_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/spyder-kernels-2.4.3-py311h06a4308_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/aiobotocore-2.5.0-py311h06a4308_0.conda
-https://repo.anaconda.com/pkgs/main/linux-64/conda-23.5.0-py311h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/conda-23.5.2-py311h06a4308_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/cookiecutter-1.7.3-pyhd3eb1b0_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/huggingface_hub-0.15.1-py311h06a4308_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/jupyter_server_fileid-0.9.0-py311h06a4308_0.conda

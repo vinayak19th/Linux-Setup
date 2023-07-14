@@ -3,7 +3,7 @@
 # platform: linux-64
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
-https://repo.anaconda.com/pkgs/main/linux-64/ca-certificates-2023.05.30-h06a4308_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2023.5.7-hbcca054_0.conda
 https://conda.anaconda.org/conda-forge/noarch/cuda-version-12.0-hffde075_2.conda
 https://repo.anaconda.com/pkgs/main/linux-64/ld_impl_linux-64-2.38-h1181459_1.conda
 https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-13.1.0-h15d22d2_0.conda
@@ -26,7 +26,7 @@ https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.23-pthreads_h803
 https://repo.anaconda.com/pkgs/main/linux-64/libsodium-1.0.18-h7b6447c_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/libuuid-1.41.5-h5eee18b_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/ncurses-6.4-h6a678d5_0.conda
-https://repo.anaconda.com/pkgs/main/linux-64/openssl-3.0.9-h7f8727e_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/openssl-3.1.1-hd590300_1.conda
 https://repo.anaconda.com/pkgs/main/linux-64/xz-5.4.2-h5eee18b_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/yaml-0.2.5-h7b6447c_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/zlib-1.2.13-h5eee18b_0.conda
@@ -51,9 +51,10 @@ https://repo.anaconda.com/pkgs/main/linux-64/aiofiles-22.1.0-py311h06a4308_0.con
 https://repo.anaconda.com/pkgs/main/linux-64/aiosqlite-0.18.0-py311h06a4308_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/attrs-22.1.0-py311h06a4308_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/backcall-0.2.0-pyhd3eb1b0_0.tar.bz2
-https://repo.anaconda.com/pkgs/main/linux-64/certifi-2023.5.7-py311h06a4308_0.conda
+https://conda.anaconda.org/conda-forge/noarch/certifi-2023.5.7-pyhd8ed1ab_0.conda
 https://repo.anaconda.com/pkgs/main/linux-64/chardet-4.0.0-py311h06a4308_1003.conda
 https://repo.anaconda.com/pkgs/main/noarch/charset-normalizer-2.0.4-pyhd3eb1b0_0.conda
+https://conda.anaconda.org/conda-forge/linux-64/cuquantum-23.03.0.20-ha770c72_3.conda
 https://repo.anaconda.com/pkgs/main/linux-64/debugpy-1.5.1-py311h6a678d5_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/decorator-5.1.1-pyhd3eb1b0_0.conda
 https://repo.anaconda.com/pkgs/main/noarch/defusedxml-0.7.1-pyhd3eb1b0_0.conda
