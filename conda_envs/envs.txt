@@ -1,9 +1,12 @@
 # conda environments:
 #
 base                  *  /home/vinayak/anaconda3
+AI                       /home/vinayak/anaconda3/envs/AI
 QML                      /home/vinayak/anaconda3/envs/QML
 cirq                     /home/vinayak/anaconda3/envs/cirq
+cuML                     /home/vinayak/anaconda3/envs/cuML
 qiskit                   /home/vinayak/anaconda3/envs/qiskit
+qml2                     /home/vinayak/anaconda3/envs/qml2
 tf_gpu                   /home/vinayak/anaconda3/envs/tf_gpu
 tfqn                     /home/vinayak/anaconda3/envs/tfqn
 torch                    /home/vinayak/anaconda3/envs/torch
