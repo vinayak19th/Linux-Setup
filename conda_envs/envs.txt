@@ -3,10 +3,14 @@
 base                  *  /home/vinayak/anaconda3
 AI                       /home/vinayak/anaconda3/envs/AI
 QML                      /home/vinayak/anaconda3/envs/QML
+TinyML                   /home/vinayak/anaconda3/envs/TinyML
+TinyMLSafe               /home/vinayak/anaconda3/envs/TinyMLSafe
+admin                    /home/vinayak/anaconda3/envs/admin
 cirq                     /home/vinayak/anaconda3/envs/cirq
 cuML                     /home/vinayak/anaconda3/envs/cuML
 qiskit                   /home/vinayak/anaconda3/envs/qiskit
 qml2                     /home/vinayak/anaconda3/envs/qml2
+tf2.14                   /home/vinayak/anaconda3/envs/tf2.14
 tf_gpu                   /home/vinayak/anaconda3/envs/tf_gpu
 tfqn                     /home/vinayak/anaconda3/envs/tfqn
 torch                    /home/vinayak/anaconda3/envs/torch
