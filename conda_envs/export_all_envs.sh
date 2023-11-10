@@ -13,5 +13,5 @@ tail -n +3 envs.txt | while read -r line; do
     CURR_ENV=$(echo $line | awk '{print $1}')
     echo "Exporting $CURR_ENV"
     conda activate $CURR_ENV
-    conda list --explicit > "ENV_$CURR_ENV.txt"
+    conda list  > "ENV_$CURR_ENV.txt"
 done 
