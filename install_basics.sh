@@ -23,6 +23,7 @@ read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then 
     cp ./nvim/init.vim ~/.config/nvim/init.vim
     nvim +PlugInstall +qall
+    git config --global core.editor "nano"
 else
     echo "Skipping Nvim Configs"
 fi
@@ -34,12 +35,24 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     echo "Installing Anaconda"
     cd ~
     mkdir Dev_Tools && cd Dev_Tools
-    wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
-    chmod +x Anaconda3-2023.03-1-Linux-x86_64.sh
-    ./Anaconda3-2023.03-1-Linux-x86_64.sh
-    ~/anaconda3/bin/conda init zsh
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+    ~/miniconda3/bin/conda init zsh
 else
     echo "Skipping Anaconda Install"
+fi
+
+echo -n "Setup Conda Solver? (y/n)? "
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    echo "Setting up Conda to use mamba solver"
+    source ~/.bashrc
+    conda update -n base conda -y
+    conda install -n base conda-libmamba-solver -y 
+    conda config --set solver libmamba
+else
+    echo "Skipping Anaconda configuration"
 fi
 
 # Docker INSTALL
