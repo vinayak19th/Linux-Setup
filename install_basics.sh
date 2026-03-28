@@ -2,8 +2,8 @@
 export SCRIPT_HOME=$PWD
 
 cd ~
-sudo apt update && sudo apt upgrade -y
-sudo apt install zsh neovim git wget curl openssh-client openssh-server -y
+brew update && brew upgrade
+brew install zsh neovim git wget curl
 
 echo $SCRIPT_HOME
 
@@ -35,9 +35,15 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     echo "Installing Anaconda"
     cd ~
     mkdir Dev_Tools && cd Dev_Tools
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    chmod +x Miniconda3-latest-Linux-x86_64.sh
-    ./Miniconda3-latest-Linux-x86_64.sh
+    OS_ARCH=$(uname -m)
+    if [ "$OS_ARCH" = "arm64" ]; then
+        CONDA_SCRIPT="Miniconda3-latest-MacOSX-arm64.sh"
+    else
+        CONDA_SCRIPT="Miniconda3-latest-MacOSX-x86_64.sh"
+    fi
+    wget https://repo.anaconda.com/miniconda/$CONDA_SCRIPT
+    chmod +x $CONDA_SCRIPT
+    ./$CONDA_SCRIPT
     ~/miniconda3/bin/conda init zsh
 else
     echo "Skipping Anaconda Install"
@@ -61,11 +67,7 @@ read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then 
     echo "Installing Docker"
     cd ~/Dev_Tools
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    sudo apt install docker-compose -y
+    brew install --cask docker
 else
     echo "Skipping Docker Install"
 fi

@@ -31,33 +31,37 @@
 
 # zshrc CHANGES
 ## P10K theme
-echo -n "Run sed commands? (y/n)? "
+echo -n "Update .zshrc with aliases and themes? (y/n)? "
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
-    echo "Running sed"
-    sed -i '/ZSH_THEME=/ s/\".*\"/\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc 
+if [ "$answer" != "${answer#[Yy]}" ] ;then
+    echo "Updating .zshrc"
+    sed -i '' 's/^ZSH_THEME=".*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc 
     echo "Set theme to P10K"
+    
     ## Plugins
-    sed -i '/plugins=(git/ s/)/\n\tdocker\n\tdocker-compose\n\tssh-agent\n\tzsh-autosuggestions\n\tzsh-syntax-highlighting\n\tconda-zsh-completion\n)/' ~/.zshrc 
+    sed -i '' 's/^plugins=(git.*/plugins=(git docker docker-compose ssh-agent zsh-autosuggestions zsh-syntax-highlighting conda-zsh-completion)/' ~/.zshrc 
     echo "Added plugins"
-    ## aliases
-    sed -i '/# alias zshconfig=\"mate/ s/#//' ~/.zshrc 
-    sed -i '/alias zshconfig=\"mate/ s/$/\nalias zshsource=\"source ~\/.zshrc\"/' ~/.zshrc
-    echo "Created config and source aliases"
-    # Apt aliases and tmux 
-    sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo apt update\"\nalias aupg=\"sudo apt upgrade\"\nalias aupi=\"sudo apt install\"\nalias tmux=\"tmux -u\"/' ~/.zshrc
-    echo "Created apt and tmux aliases"
-    # NumaFix
-    sed -i '/apt install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' ~/.zshrc
-    sed -i 's/mate/nvim/' ~/.zshrc
-    echo "Created NumaFix alias"
-    # Nvim Update
-    sed -i '/tmux -u\"/a alias nvupdate=\"nvim +PlugUpdate +qall\"' ~/.zshrc
-    echo "Created Nvim Update alias"
-    # git_compush
-    sed -i '/tmux -u\"/a #Utility Functions \ngcomp(){\n    git commit -m $1 && git push\n}'~/.zshrc
-fi
+    
+    ## editors
+    sed -i '' 's/mate/nvim/g' ~/.zshrc
+    
+    cat << 'EOF' >> ~/.zshrc
+
+# Custom Aliases & Functions
+alias zshsource="source ~/.zshrc"
+alias bupd="brew update"
+alias bupg="brew upgrade"
+alias bupi="brew install"
+alias tmux="tmux -u"
+alias nvupdate="nvim +PlugUpdate +qall"
+
+#Utility Functions 
+gcomp(){
+    git commit -m "$1" && git push
+}
+EOF
+    echo "Appended custom aliases and functions"
 else
-    echo "Skipping sed commands"
+    echo "Skipping .zshrc updates"
 fi
 source ~/.zshrc
