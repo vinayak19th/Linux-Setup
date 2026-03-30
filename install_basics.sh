@@ -72,6 +72,18 @@ else
     echo "Skipping Docker Install"
 fi
 
+# Ghostty INSTALL
+echo -n "Install Ghostty? (y/n)? "
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    echo "Installing Ghostty"
+    brew install --cask ghostty
+    mkdir -p ~/.config/ghostty
+    cp "$SCRIPT_HOME/ghosty_config.txt" ~/.config/ghostty/config
+else
+    echo "Skipping Ghostty Install"
+fi
+
 
 # ANACONDA ENVS Set UP
 echo -n "Set Anaconda Envs from backup? (y/n)? "
