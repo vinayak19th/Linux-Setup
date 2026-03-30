@@ -3,7 +3,7 @@ export SCRIPT_HOME=$PWD
 
 cd ~
 sudo apt update && sudo apt upgrade -y
-sudo apt install zsh neovim git wget curl openssh-client openssh-server -y
+sudo apt install zsh neovim git wget curl openssh-client openssh-server software-properties-common -y
 
 echo $SCRIPT_HOME
 
@@ -68,6 +68,18 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     sudo apt install docker-compose -y
 else
     echo "Skipping Docker Install"
+fi
+
+# Ghostty INSTALL
+echo -n "Install Ghostty? (y/n)? "
+read answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then 
+    echo "Installing Ghostty"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
+    mkdir -p ~/.config/ghostty
+    cp "$SCRIPT_HOME/ghosty_config.txt" ~/.config/ghostty/config
+else
+    echo "Skipping Ghostty Install"
 fi
 
 
