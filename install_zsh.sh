@@ -44,11 +44,11 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) mea
     sed -i '/# alias zshconfig=\"mate/ s/#//' ~/.zshrc 
     sed -i '/alias zshconfig=\"mate/ s/$/\nalias zshsource=\"source ~\/.zshrc\"/' ~/.zshrc
     echo "Created config and source aliases"
-    # Apt aliases and tmux 
-    sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo apt update\"\nalias aupg=\"sudo apt upgrade\"\nalias aupi=\"sudo apt install\"\nalias tmux=\"tmux -u\"/' ~/.zshrc
-    echo "Created apt and tmux aliases"
+    # nala aliases and tmux 
+    sed -i '/# alias ohmyzsh=\"mate.*/ s/$/\nalias aupd=\"sudo nala update\"\nalias aupg=\"sudo nala upgrade\"\nalias aupi=\"sudo nala install\"\nalias tmux=\"tmux -u\"/' ~/.zshrc
+    echo "Created nala and tmux aliases"
     # NumaFix
-    sed -i '/apt install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' ~/.zshrc
+    sed -i '/nala install\"/a alias numafix=\"sudo echo 0 | sudo tee -a \"/sys/bus/pci/devices/0000:01:00.0/numa_node\"\"' ~/.zshrc
     sed -i 's/mate/nvim/' ~/.zshrc
     echo "Created NumaFix alias"
     # Nvim Update
