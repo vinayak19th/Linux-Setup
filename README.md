@@ -6,6 +6,7 @@ This script installs the following:
 - ZSH (and configs)
 - Ancaconda (and exported envs)
 - Docker
+- Ghostty
 
 A complete set of details can be found in the [Full Installation Details](#full-installation-details) section
 
@@ -16,7 +17,8 @@ A complete set of details can be found in the [Full Installation Details](#full-
 #### Step 1: cd into and give run permissions to both scripts:
 ```bash
 git clone https://github.com/vinayak19th/Linux-Setup.git
-chmod +x ./install_bash.sh
+chmod +rab+x ./install_bash.sh
+chmod +x ./git-switch-by-os.sh
 ```
 
 #### Step 2: Install Meslo NF font:
@@ -92,3 +94,8 @@ You can find the detailed instructions [here](https://youngstone89.medium.com/ho
   * Installs docker using the convienient script from [get.docker.com](https://get.docker.com/)
     `curl -fsSL https://get.docker.com -o get-docker.sh`
   * Creates docker group and adds the current user to it
+
+* **Ghostty:**
+  * Installs Ghostty terminal emulator
+  * Configures it with the [ghosty_config.txt](./ghosty_config.txt) file.
+  
