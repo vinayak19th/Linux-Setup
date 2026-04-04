@@ -98,7 +98,11 @@ should_run() {
     fi
 }
 
+# Ensure we are on the correct branch for the detected OS
+./git-switch-by-os.sh || true
+
 # --- Installation Steps ---
+
 
 if should_run "$INSTALL_CORE" "Update apt and install core tools"; then
     cd ~
