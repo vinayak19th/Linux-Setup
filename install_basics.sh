@@ -44,6 +44,7 @@ if [[ $# -gt 0 ]]; then
         INSTALL_CONDA_CONFIG=false
         INSTALL_DOCKER=false
         INSTALL_GHOSTTY=false
+        INSTALL_UV=false
         INSTALL_CONDA_ENVS=false
         INSTALL_CORE=false
         SELECTIVE_MODE=true
@@ -57,6 +58,7 @@ if [[ $# -gt 0 ]]; then
             --conda-config) INSTALL_CONDA_CONFIG=true; shift ;;
             --docker)       INSTALL_DOCKER=true; shift ;;
             --ghostty)      INSTALL_GHOSTTY=true; shift ;;
+            --uv)           INSTALL_UV=true; shift ;;
             --conda-envs)   INSTALL_CONDA_ENVS=true; shift ;;
             --core)         INSTALL_CORE=true; shift ;;
             --interactive)  SELECTIVE_MODE=false; INTERACTIVE=true; shift ;;
@@ -67,6 +69,7 @@ if [[ $# -gt 0 ]]; then
                 INSTALL_CONDA_CONFIG=true
                 INSTALL_DOCKER=true
                 INSTALL_GHOSTTY=true
+                INSTALL_UV=true
                 INSTALL_CONDA_ENVS=true
                 INSTALL_CORE=true
                 shift
@@ -157,6 +160,11 @@ if should_run "$INSTALL_GHOSTTY" "Install Ghostty"; then
     (cd /tmp && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)")
     mkdir -p ~/.config/ghostty
     cp "$SCRIPT_HOME/ghosty_config.txt" ~/.config/ghostty/config
+fi
+
+if should_run "$INSTALL_UV" "Install UV"; then
+    echo "Installing UV"
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
 
