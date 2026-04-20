@@ -112,7 +112,7 @@ should_run() {
 if should_run "$INSTALL_CORE" "Update brew and install core tools"; then
     cd ~
     brew update && brew upgrade
-    brew install zsh neovim git wget curl
+    brew install zsh neovim git wget curl tmux
 fi
 
 echo -n "Script Home: "
