@@ -44,7 +44,7 @@ You can find the detailed instructions [here](https://youngstone89.medium.com/ho
   *  neovim 
   *  git 
   *  wget 
-  *  tmux
+  *  tmu
   *  curl 
   *  openssh-client 
   *  openssh-server
