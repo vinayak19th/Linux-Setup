@@ -110,7 +110,7 @@ should_run() {
 if should_run "$INSTALL_CORE" "Update apt and install core tools"; then
     cd ~
     sudo apt update && sudo apt upgrade -y
-    sudo apt install zsh neovim git wget curl openssh-client openssh-server software-properties-common -y
+    sudo apt install zsh tmux neovim git wget curl openssh-client openssh-server software-properties-common -y
 fi
 
 echo -n "Script Home: "
