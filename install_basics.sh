@@ -2,16 +2,16 @@
 export SCRIPT_HOME=$PWD
 
 # --- Arguments and Configuration ---
-INSTALL_ZSH=true
-INSTALL_NVIM=true
-INSTALL_ANACONDA=true
-INSTALL_CONDA_CONFIG=true
-INSTALL_DOCKER=true
-INSTALL_GHOSTTY=true
-INSTALL_CONDA_ENVS=true
-INSTALL_CORE=true
-INSTALL_UV=true
-SELECTIVE_MODE=false
+INSTALL_ZSH=false
+INSTALL_NVIM=false
+INSTALL_ANACONDA=false
+INSTALL_CONDA_CONFIG=false
+INSTALL_DOCKER=false
+INSTALL_GHOSTTY=false
+INSTALL_CONDA_ENVS=false
+INSTALL_CORE=false
+INSTALL_UV=false
+SELECTIVE_MODE=true
 
 show_help() {
     echo "Usage: ./install_basics.sh [OPTIONS]"
@@ -26,32 +26,15 @@ show_help() {
     echo "  --uv            Install UV"
     echo "  --conda-envs    Set Anaconda Envs from backup"
     echo "  --core          Update brew and install basic packages"
-    echo "  --all           Run all sections (default)"
+    echo "  --all           Run all sections"
     echo "  --interactive   Prompt for each section"
     echo "  -h, --help      Show this help message"
     echo ""
-    echo "If no options are provided, the script runs all sections by default."
+    echo "If no options are provided, no sections run (selective mode). Use --all for a full run."
 }
 
 # Parse flags
 if [[ $# -gt 0 ]]; then
-    # If any specific flags are provided, we start with everything disabled
-    # Unless one of the flags is --all, in which case everything stays true
-    
-    # Check if --all or -h/--help is present to avoid disabling everything immediately
-    if [[ ! "$*" == *"--all"* ]] && [[ ! "$*" == *"-h"* ]] && [[ ! "$*" == *"--help"* ]]; then
-        INSTALL_ZSH=false
-        INSTALL_NVIM=false
-        INSTALL_ANACONDA=false
-        INSTALL_CONDA_CONFIG=false
-        INSTALL_DOCKER=false
-        INSTALL_GHOSTTY=false
-        INSTALL_UV=false
-        INSTALL_CONDA_ENVS=false
-        INSTALL_CORE=false
-        SELECTIVE_MODE=true
-    fi
-
     while [[ $# -gt 0 ]]; do
         case $1 in
             --omz)          INSTALL_ZSH=true; shift ;;
