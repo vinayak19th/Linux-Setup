@@ -87,7 +87,7 @@ should_run() {
 }
 
 # Ensure we are on the correct branch for the detected OS
-./git-switch-by-os.sh || true
+# ./git-switch-by-os.sh || true
 
 # --- Installation Steps ---
 
