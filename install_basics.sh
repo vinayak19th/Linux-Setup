@@ -27,11 +27,13 @@ show_help() {
     echo "  --conda-envs    Set Anaconda Envs from backup"
     echo "  --core          Update brew and install basic packages"
     echo "  --all           Run all sections"
-    echo "  --interactive   Prompt for each section"
+    echo "  --interactive   Prompt for each section (same as default with no options)"
     echo "  -h, --help      Show this help message"
     echo ""
-    echo "If no options are provided, no sections run (selective mode). Use --all for a full run."
+    echo "With no options, the script prompts y/n for each section. Pass flags or --all to run non-interactively."
 }
+
+ARG_COUNT=$#
 
 # Parse flags
 if [[ $# -gt 0 ]]; then
@@ -63,6 +65,11 @@ if [[ $# -gt 0 ]]; then
             *)              echo "Unknown option: $1"; show_help; exit 1 ;;
         esac
     done
+fi
+
+if [[ "$ARG_COUNT" -eq 0 ]]; then
+    INTERACTIVE=true
+    SELECTIVE_MODE=false
 fi
 
 should_run() {
