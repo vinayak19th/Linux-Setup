@@ -4,6 +4,7 @@ export SCRIPT_HOME=$PWD
 # --- Arguments and Configuration ---
 INSTALL_ZSH=false
 INSTALL_NVIM=false
+INSTALL_KEYD=false
 INSTALL_ANACONDA=false
 INSTALL_CONDA_CONFIG=false
 INSTALL_DOCKER=false
@@ -19,10 +20,12 @@ show_help() {
     echo "Options:"
     echo "  --omz           Configure OH-MY-ZSH"
     echo "  --nvim          Config Nvim"
+    echo "  --keyd          Configure Keyd"
     echo "  --anaconda      Install Anaconda"
     echo "  --conda-config  Setup Conda libmamba solver"
     echo "  --docker        Install Docker"
     echo "  --ghostty       Install Ghostty"
+    echo "  --uv            Install UV"
     echo "  --conda-envs    Set Anaconda Envs from backup"
     echo "  --core          Update apt and install basic packages"
     echo "  --all           Run all sections"
@@ -38,6 +41,7 @@ if [[ $# -gt 0 ]]; then
         case $1 in
             --omz)          INSTALL_ZSH=true; shift ;;
             --nvim)         INSTALL_NVIM=true; shift ;;
+            --keyd)         INSTALL_KEYD=true; shift ;;
             --anaconda)     INSTALL_ANACONDA=true; shift ;;
             --conda-config) INSTALL_CONDA_CONFIG=true; shift ;;
             --docker)       INSTALL_DOCKER=true; shift ;;
@@ -49,6 +53,7 @@ if [[ $# -gt 0 ]]; then
             --all)
                 INSTALL_ZSH=true
                 INSTALL_NVIM=true
+                INSTALL_KEYD=true
                 INSTALL_ANACONDA=true
                 INSTALL_CONDA_CONFIG=true
                 INSTALL_DOCKER=true
@@ -90,11 +95,19 @@ should_run() {
 
 # --- Installation Steps ---
 
+if should_run "$INSTALL_KEYD" "Configure Keyd"; then
+    echo "Applying keyd config: CapsLock-> shift+ctrl+alt+super"
+    mkdir -p ~/.config/keyd
+    sudo cp "$SCRIPT_HOME/keyd_config.txt" ~/.config/keyd/default.conf
+    sudo ln -s /usr/bin/keyd.rvaiya /usr/local/bin/keyd
+    sudo systemctl enable keyd --now
+    sudo systemctl restart keyd 
+fi
 
 if should_run "$INSTALL_CORE" "Update apt and install core tools"; then
     cd ~
     sudo apt update && sudo apt upgrade -y
-    sudo apt install zsh tmux neovim git wget curl openssh-client openssh-server software-properties-common fastboot -y
+    sudo apt install zsh tmux neovim git wget curl openssh-client openssh-server software-properties-common fastboot keyd -y
 fi
 
 echo -n "Script Home: "

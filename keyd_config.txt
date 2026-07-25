@@ -1,0 +1,6 @@
+[ids]
+*
+
+[main]
+# Maps Caps Lock to Ctrl+Alt+Shift+Super
+capslock = C-A-S-M
