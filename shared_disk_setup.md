@@ -255,6 +255,80 @@ to `~/.zshrc`.
 
 ---
 
+## Auto-syncing experiments to WSL
+
+Code that runs mostly on Ubuntu can live on Ubuntu's own disk (e.g.
+`~/git/QuIRK`) for full speed. `sync_experiments.sh` mirrors chosen folders
+onto the shared disk so WSL can read them:
+
+```
+~/git/QuIRK/experiments  ──(one-way, on change)──►  ~/wslgit/QuIRK/experiments
+     native btrfs                                     /mnt/wsl_shared_disk/git/...
+```
+
+This uses [lsyncd](https://github.com/lsyncd/lsyncd), which watches folders
+with inotify and runs rsync in batches. The files are in `lsyncd/`:
+
+| File | Purpose |
+|---|---|
+| `projects.lua` | **The one file to edit per project:** `src`, `dst`, optional `exclude`, `delete`, `delay` |
+| `lsyncd.conf.lua` | lsyncd config: reads `projects.lua`, adds the safety checks, one `sync{}` per project |
+| `flush.sh` | one full rsync pass over every project (runs at shutdown; safe to run by hand) |
+| `lsyncd-shared.service` | system unit, runs lsyncd as `vinayak` |
+
+**Behaviour**
+- **Mirrors deletions** (lsyncd default). The native copy is the source of
+  truth, so treat `dst` as read-only in WSL and write WSL outputs elsewhere
+  (e.g. `~/wsl-runs`). Set `delete = false` on a project to keep removed files.
+- Changes are batched for 5 s (`delay`), then only the changed files are sent.
+  Every (re)start does a full sync first.
+- Global excludes: `__pycache__/`, `.ipynb_checkpoints/`, `*.pyc`, `*.swp`,
+  `*.tmp`, `.venv/`, `node_modules/`, `.git/`. Excluded files are never deleted
+  in `dst`.
+
+**Safety checks**
+1. **Mount check, in three layers:** `RequiresMountsFor=/mnt/wsl_shared_disk`
+   (start after the mount, stop before it unmounts), plus `ExecStartPre=mountpoint -q`,
+   plus a `mountpoint` check inside `lsyncd.conf.lua`. Without it, lsyncd would
+   sync into the empty mount-point folder on the root filesystem.
+2. **Destination check:** each `dst` must be strictly inside
+   `/mnt/wsl_shared_disk`, never the disk root and never outside it, or lsyncd
+   refuses to start. With delete on, a bad `dst` could otherwise wipe a folder.
+3. **Missing source** projects are skipped with a warning instead of stopping
+   everything.
+4. **Shutdown flush:** `ExecStopPost=flush.sh` runs one full rsync after lsyncd
+   exits, so changes still waiting in the 5 s batch aren't lost. Because of
+   `RequiresMountsFor`, this happens before the disk unmounts. `flush.sh`
+   reads the same `projects.lua` (through `lua5.3`, an lsyncd dependency) and
+   runs the same checks.
+
+**Install (once)**
+```bash
+sudo apt install lsyncd                       # 2.2.3; pulls in lua5.3
+sudo systemctl disable --now lsyncd 2>/dev/null; sudo systemctl mask lsyncd   # packaged init-script service, unused
+sudo install -m644 ~/DevTools/Linux-Setup/lsyncd/lsyncd-shared.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now lsyncd-shared
+journalctl -u lsyncd-shared -f
+```
+
+**Add a project:** add an entry to `lsyncd/projects.lua`, then
+`sudo systemctl restart lsyncd-shared`. The restart flushes, then does a full
+sync of every project.
+
+**Other commands**
+```bash
+~/DevTools/Linux-Setup/lsyncd/flush.sh       # sync everything right now
+cat ~/.local/state/lsyncd.status             # what lsyncd is watching
+sudo systemctl disable --now lsyncd-shared   # turn it off
+```
+
+Each watched folder uses one inotify watch. The limit
+(`/proc/sys/fs/inotify/max_user_watches`) is 65536 here. For very large trees,
+raise it with `echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/90-inotify.conf && sudo sysctl --system`.
+
+---
+
 ## Day-to-day commands (Ubuntu)
 
 ```bash

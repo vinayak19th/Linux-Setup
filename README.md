@@ -10,6 +10,8 @@ This script installs the following:
 
 A complete set of details can be found in the [Full Installation Details](#full-installation-details) section
 
+**Dual-boot with WSL:** [shared_disk_setup.md](./shared_disk_setup.md) covers an ext4 VHDX on D: that both native Ubuntu and WSL mount (`shared_disk_setup.sh`, `shared_disk_wsl.ps1`, `shared_disk_wsl_links.sh`).
+
 ---
 
 

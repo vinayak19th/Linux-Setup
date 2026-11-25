@@ -1,0 +1,27 @@
+# lsyncd-shared.service: live mirrors from native Ubuntu onto the shared disk.
+# Install:  sudo install -m644 lsyncd-shared.service /etc/systemd/system/
+#           sudo systemctl daemon-reload && sudo systemctl enable --now lsyncd-shared
+[Unit]
+Description=lsyncd: mirror projects onto /mnt/wsl_shared_disk
+# Mount check: pulls in the shared-disk mount, starts only after it, and is
+# stopped BEFORE it unmounts (so the final flush below still has the disk).
+RequiresMountsFor=/mnt/wsl_shared_disk /home/vinayak
+After=network.target
+
+[Service]
+Type=simple
+User=vinayak
+Group=vinayak
+Environment=HOME=/home/vinayak
+# Second mount check, in case the mount unit is up but the disk isn't actually mounted
+ExecStartPre=/usr/bin/mountpoint -q /mnt/wsl_shared_disk
+ExecStartPre=/usr/bin/mkdir -p /home/vinayak/.local/state
+ExecStart=/usr/bin/lsyncd -nodaemon /home/vinayak/DevTools/Linux-Setup/lsyncd/lsyncd.conf.lua
+# Shutdown protection: after lsyncd exits, push anything still waiting in its delay
+ExecStopPost=/home/vinayak/DevTools/Linux-Setup/lsyncd/flush.sh
+Restart=on-failure
+RestartSec=30
+TimeoutStopSec=180
+
+[Install]
+WantedBy=multi-user.target
